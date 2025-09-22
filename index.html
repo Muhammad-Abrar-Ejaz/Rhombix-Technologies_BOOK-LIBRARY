@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library - Your Gateway to Knowledge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-book-open"></i>
+                <span>Digital Library</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#search" class="nav-link">Search</a>
+                <a href="#borrowed" class="nav-link">My Books</a>
+            </div>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Next Great Read</h1>
+            <p>Explore thousands of books across all genres. From classic literature to cutting-edge technology, find your perfect book.</p>
+            <div class="hero-search">
+                <input type="text" id="hero-search-input" placeholder="Search for books, authors, or categories...">
+                <button id="hero-search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Books</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Categories</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section id="search" class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search books by title, author, or category...">
+                </div>
+                <div class="filter-container">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Science">Science</option>
+                        <option value="History">History</option>
+                        <option value="Technology">Technology</option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Business">Business</option>
+                        <option value="Self-Help">Self-Help</option>
+                    </select>
+                    <select id="sort-filter">
+                        <option value="title">Sort by Title</option>
+                        <option value="author">Sort by Author</option>
+                        <option value="category">Sort by Category</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <h2>Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="Fiction">
+                    <i class="fas fa-magic"></i>
+                    <h3>Fiction</h3>
+                    <p>Imaginative stories and novels</p>
+                </div>
+                <div class="category-card" data-category="Science">
+                    <i class="fas fa-atom"></i>
+                    <h3>Science</h3>
+                    <p>Scientific discoveries and research</p>
+                </div>
+                <div class="category-card" data-category="History">
+                    <i class="fas fa-landmark"></i>
+                    <h3>History</h3>
+                    <p>Historical events and civilizations</p>
+                </div>
+                <div class="category-card" data-category="Technology">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Technology</h3>
+                    <p>Tech innovations and programming</p>
+                </div>
+                <div class="category-card" data-category="Philosophy">
+                    <i class="fas fa-brain"></i>
+                    <h3>Philosophy</h3>
+                    <p>Deep thinking and wisdom</p>
+                </div>
+                <div class="category-card" data-category="Biography">
+                    <i class="fas fa-user"></i>
+                    <h3>Biography</h3>
+                    <p>Life stories and memoirs</p>
+                </div>
+                <div class="category-card" data-category="Business">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Business</h3>
+                    <p>Entrepreneurship and management</p>
+                </div>
+                <div class="category-card" data-category="Self-Help">
+                    <i class="fas fa-heart"></i>
+                    <h3>Self-Help</h3>
+                    <p>Personal development and growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Grid Section -->
+    <section class="books-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Books</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="books-grid" class="books-grid">
+                <!-- Books will be dynamically loaded here -->
+            </div>
+            <div id="books-list" class="books-list" style="display: none;">
+                <!-- List view will be dynamically loaded here -->
+            </div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading books...</p>
+            </div>
+            <div id="no-results" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No books found</h3>
+                <p>Try adjusting your search criteria or browse our categories.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Borrowed Books Section -->
+    <section id="borrowed" class="borrowed-section">
+        <div class="container">
+            <h2>My Borrowed Books</h2>
+            <div id="borrowed-books" class="borrowed-books">
+                <!-- Borrowed books will be displayed here -->
+            </div>
+            <div id="no-borrowed" class="no-borrowed">
+                <i class="fas fa-bookmark"></i>
+                <h3>No borrowed books yet</h3>
+                <p>Start exploring our collection and borrow your first book!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Detail Modal -->
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="book-detail-content">
+                <!-- Book details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Reader Modal -->
+    <div id="reader-modal" class="modal reader-modal">
+        <div class="modal-content reader-content">
+            <span class="close">&times;</span>
+            <div class="reader-header">
+                <h3 id="reader-title">Book Title</h3>
+                <div class="reader-controls">
+                    <button id="prev-page" class="reader-btn">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <span id="page-info">Page 1 of 10</span>
+                    <button id="next-page" class="reader-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="reader-content" class="reader-text">
+                <!-- Book content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Digital Library</h3>
+                    <p>Your gateway to knowledge and imagination. Explore thousands of books across all genres.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#search">Search</a></li>
+                        <li><a href="#borrowed">My Books</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#" data-category="Fiction">Fiction</a></li>
+                        <li><a href="#" data-category="Science">Science</a></li>
+                        <li><a href="#" data-category="Technology">Technology</a></li>
+                        <li><a href="#" data-category="History">History</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Digital Library. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
